@@ -95,6 +95,10 @@ git diff --compact-summary "origin/${TARGET_BRANCH}...origin/${SOURCE_BRANCH}"
 GIT_DIFF=$(git diff --compact-summary --no-color "origin/${TARGET_BRANCH}...origin/${SOURCE_BRANCH}")
 GIT_DIFF=$(echo -e "${GIT_DIFF}" | sed 's|#|^HaSz^|g' | sed ':a;N;$!ba; s/\n/^NowALiNiA^/g')
 
+echo -e "\nHealthchecks..."
+hub version
+git remote -v
+
 echo -e "\nSetting template..."
 PR_NUMBER=$(hub pr list --base "${TARGET_BRANCH}" --head "${SOURCE_BRANCH}" --format '%I')
 if [[ -z "${PR_NUMBER}" ]]; then
