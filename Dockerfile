@@ -1,5 +1,5 @@
 # Use a clean tiny image to store artifacts in
-FROM ubuntu:jammy-20240808
+FROM ubuntu:jammy
 
 # Labels for http://label-schema.org/rc1/#build-time-labels
 # And for https://github.com/opencontainers/image-spec/blob/master/annotations.md
@@ -50,6 +50,7 @@ SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
 # hadolint ignore=DL3008
 RUN chmod +x /entrypoint.sh ;\
   apt-get update -y ;\
+  apt-get dist-update -y ;\
   apt-get install --no-install-recommends -y \
     curl \
     gpg-agent \
